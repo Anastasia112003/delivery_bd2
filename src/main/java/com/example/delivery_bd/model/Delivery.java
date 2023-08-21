@@ -1,12 +1,8 @@
 package com.example.delivery_bd.model;
 
-import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Type;
 
-import java.util.List;
-import java.util.Map;
 
 @Entity
 @AllArgsConstructor
@@ -16,7 +12,7 @@ import java.util.Map;
 @Table(name = "delivery")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 
-public class Employee {
+public class Delivery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @EqualsAndHashCode.Include
@@ -24,8 +20,7 @@ public class Employee {
     private Integer id;
     @Column(name = "name")
     private String name;
-    @Column(name = "info")
-    @Type(JsonType.class)
-    private List<Map<String, String>> info;
+    @Column(name = "info",columnDefinition = "json")
+    private String info;
 
 }
