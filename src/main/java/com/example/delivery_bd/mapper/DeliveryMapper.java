@@ -19,8 +19,7 @@ public class DeliveryMapper {
 
 
     public List<Delivery> deliveryFromDTO(String json) {
-        JsonParser parser = new JsonParser();
-        DeliveryDTO deliveryDTO = parser.parseInfo(json);
+        DeliveryDTO deliveryDTO =  JsonParser.parseInfo(json);
 
         Delivery delivery = this.modelMapper.map(deliveryDTO, Delivery.class);
         List<Delivery> deliveryList = new ArrayList<>();
