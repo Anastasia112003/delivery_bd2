@@ -10,8 +10,8 @@ import java.util.List;
 
 public class DeliveryDTO {
 
-        Integer id;
-        String name;
-        List<InfoDTO> info;
+    Long id;
+    String name;
+    List<InfoDTO> info;
 
 }

@@ -1,6 +1,6 @@
 package com.example.delivery_bd.service;
 
-import com.example.delivery_bd.dto.DeliveryDTO;
+import com.example.delivery_bd.model.Delivery;
 import com.example.delivery_bd.repository.DeliveryRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 
 
     @Override
-    public List<DeliveryDTO> getAll() {
+    public List<Delivery> getAll() {
 
         return repository.findAll();
     }

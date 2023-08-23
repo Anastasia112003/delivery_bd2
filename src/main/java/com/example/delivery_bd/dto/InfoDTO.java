@@ -1,12 +1,14 @@
 package com.example.delivery_bd.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class InfoDTO {
-Integer info;
-String phone;
-String email;
+    Long number;
+    String phone;
+    String email;
 }

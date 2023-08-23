@@ -20,7 +20,7 @@ public class Delivery {
     private Integer id;
     @Column(name = "name")
     private String name;
-    @Column(name = "info",columnDefinition = "json")
+    @Column(name = "info", columnDefinition = "json")
     private String info;
 
 }

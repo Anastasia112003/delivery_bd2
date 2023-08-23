@@ -1,9 +1,9 @@
 package com.example.delivery_bd.service;
 
-import com.example.delivery_bd.dto.DeliveryDTO;
+import com.example.delivery_bd.model.Delivery;
 
 import java.util.List;
 
 public interface DeliveryService {
-List<DeliveryDTO> getAll();
+    List<Delivery> getAll();
 }

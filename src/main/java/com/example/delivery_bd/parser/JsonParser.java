@@ -2,9 +2,10 @@ package com.example.delivery_bd.parser;
 
 import com.example.delivery_bd.dto.DeliveryDTO;
 import com.example.delivery_bd.dto.InfoDTO;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 
 import java.util.ArrayList;
@@ -12,24 +13,30 @@ import java.util.List;
 
 public class JsonParser {
 
-  public List<InfoDTO> parseInfo(String jsonArrayString) throws JsonProcessingException {
-    ObjectMapper objectMapper = new ObjectMapper();
-
-      JsonNode jsonArray = objectMapper.readTree(jsonArrayString);
-      List<InfoDTO> infoList = new ArrayList<>();
-      for (JsonNode element : jsonArray) {
-        InfoDTO infoDTO = null;
+    public static DeliveryDTO parseInfo(String jsonArrayString) {
+        DeliveryDTO deliveryDTO = new DeliveryDTO();
+        JSONParser parser = new JSONParser();
         try {
-          infoDTO = objectMapper.treeToValue(element, InfoDTO.class);
-        } catch (JsonProcessingException e) {
-          throw new RuntimeException(e);
+            JSONObject root = (JSONObject) parser.parse(jsonArrayString);
+            Long id = (Long) root.get("id");
+            String name = (String) root.get("name");
+            JSONArray info = (JSONArray) root.get("info");
+            List<InfoDTO> infoDTOList = new ArrayList<>();
+            for (Object object : info) {
+                JSONObject infoObject = (JSONObject) object;
+                Long number = (Long) infoObject.get("number");
+                String phone = (String) infoObject.get("phone");
+                String email = (String) infoObject.get("email");
+                InfoDTO infoDTO = new InfoDTO(number, phone, email);
+                infoDTOList.add(infoDTO);
+            }
+            deliveryDTO.setId(id);
+            deliveryDTO.setName(name);
+            deliveryDTO.setInfo(infoDTOList);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
-        infoList.add(infoDTO);
-        DeliveryDTO deliveryDTO=new DeliveryDTO();
-        deliveryDTO.setInfo(infoList);
-      }
+        return null;
 
-
-    return infoList;
-  }
+    }
 }
