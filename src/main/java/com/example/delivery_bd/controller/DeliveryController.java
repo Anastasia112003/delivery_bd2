@@ -1,17 +1,18 @@
 package com.example.delivery_bd.controller;
 
-import com.example.delivery_bd.mapper.DeliveryMapper;
-import com.example.delivery_bd.model.Delivery;
+import com.example.delivery_bd.dto.DeliveryDTO;
+import com.example.delivery_bd.mapstract.DeliveryMapper;
 import com.example.delivery_bd.service.DeliveryService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
 public class DeliveryController {
-    public static final String json = "id: 1\n" +
+    public static final String json = "id: 1+\n" +
             "name : \"макдак\",\n" +
             "        info: [\n" +
             "            {\n" +
@@ -35,13 +36,15 @@ public class DeliveryController {
         this.deliveryMapper = deliveryMapper;
     }
 
-    @GetMapping("/all")
-    public List<Delivery> findAll() {
-        deliveryMapper.deliveryFromDTO(json);
-        return  service.getAll();
 
+    @GetMapping("/all")
+    public List<DeliveryDTO> findAll() {
+
+      return  service.getAll().stream().map(deliveryMapper::toDTO).collect(Collectors.toList());
 
     }
+
+
 
 
 }

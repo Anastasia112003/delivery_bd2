@@ -32,7 +32,8 @@ public class JsonParser {
             }
             deliveryDTO.setId(id);
             deliveryDTO.setName(name);
-            deliveryDTO.setInfo(infoDTOList);
+            deliveryDTO.setInfoDTOS(infoDTOList);
+
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
