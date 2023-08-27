@@ -1,14 +1,14 @@
 package com.example.delivery_bd.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.stereotype.Component;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
 @Setter
-@Component
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class DeliveryDTO {
 
     Long id;

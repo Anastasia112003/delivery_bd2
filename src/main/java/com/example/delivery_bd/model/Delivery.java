@@ -11,13 +11,13 @@ import lombok.*;
 @Setter
 @Table(name = "delivery")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-
+@Builder
 public class Delivery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @EqualsAndHashCode.Include
     @Column(name = "id")
-    private Integer id;
+    private Long id;
     @Column(name = "name")
     private String name;
     @Column(name = "info", columnDefinition = "json")
